@@ -15,6 +15,7 @@
 
 		public function showLogin()
 		{
+			//这是注释
 			$this->load->view($this->bs->getSiteUrl("fakeindex"), $this->bs->data);
 		}
 
