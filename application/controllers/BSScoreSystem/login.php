@@ -31,7 +31,7 @@
 			}
 			else
 			{
-				//这是WT加的注释
+				//WT修改了注释
 				$this->load->model($this->bs->getSiteUrl('login_model'), 'logindb');
 
 				$username = $this->input->post("username");
