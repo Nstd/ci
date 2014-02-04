@@ -9,7 +9,6 @@
 
 		public function index()
 		{
-			//这是一行注释
 			$this->load->view($this->bs->getSiteUrl("login"), $this->bs->data);
 		}
 
