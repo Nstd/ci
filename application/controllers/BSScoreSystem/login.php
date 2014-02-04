@@ -48,7 +48,7 @@
 					case Login_model::PASSWORD_NOT_FIT:
 						echo $this->bs->getJsonString(0, "密码错误!");
 						break;
-					default:
+					default: 
 						echo $this->bs->getJsonString(0, "未知错误!");
 				}
 			}
