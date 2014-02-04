@@ -34,6 +34,7 @@
 				//这是WT加的注释
 				$this->load->model($this->bs->getSiteUrl('login_model'), 'logindb');
 
+				//WT在dev里做了注释
 				$username = $this->input->post("username");
 				$password = $this->input->post("password");
 				$verify_state = $this->logindb->verify_user($username, $password);
