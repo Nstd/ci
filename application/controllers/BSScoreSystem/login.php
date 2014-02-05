@@ -37,13 +37,13 @@
 				//WT在dev里做了注释
 				$username = $this->input->post("username");
 				$password = $this->input->post("password");
-				$verify_state = $this->logindb->verify_user($username, $password);
+				$verify_state = $this->logindb->verify_user($username, $password, $usertype);
 
 				switch($verify_state)
 				{
 					case Login_model::SUCCESS:
 						$this->session->set_userdata("username", $username);
-						echo $this->bs->getJsonString(1, "success", $this->bs->site_url . "/" . $this->bs->site_name . "/home");
+						echo $this->bs->getJsonString(1, "success", $this->bs->site_url . "/" . $this->bs->site_name . "/home" . $usertype);
 						break;
 					case Login_model::USER_NOT_EXIST:
 						echo $this->bs->getJsonString(0, "用户不存在!");
