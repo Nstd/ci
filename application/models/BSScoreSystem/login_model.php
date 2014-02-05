@@ -18,16 +18,17 @@ class Login_model extends CI_Model
 	 * @param  string $password [密码]
 	 * @return [int]            [验证结果]
 	 */
-	function verify_user($username="", $password="")
+	function verify_user($username="", $password="", &$type = "")
 	{
 		$this->load->database();
-		$query = $this->db->query("select user_name, user_pwd, user_type from t_user_info where user_name='$username'");
+		$query = $this->db->query("select * from t_user_info where username='$username'");
 
 		if($query->num_rows() == 1)
 		{
 			$row = $query->row_array();
-			if($row['user_pwd'] == $password)
+			if($row['password'] == $password)
 			{
+				$type = $row['type'];
 				return Login_model::SUCCESS;
 			}
 			else
