@@ -19,6 +19,12 @@ class Bs
 	var $CI;
 	/**  错误数据的显示信息 **/
 	const INVALID_DATA_TABLE = "<table style='width:100%;'><tr><td style='text-align:center;'><font color='red'>invalid_data!</font></td></tr></table>";
+	/** 用户类型：管理员 **/
+	const USER_ADMIN   = 0;
+	/** 用户类型：学生 **/
+	const USER_STUDENT = 1;
+	/** 用户类型：教师 **/
+	const USER_TEACHER = 2;
 
 	function __construct()
 	{
