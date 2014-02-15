@@ -43,7 +43,15 @@
 				{
 					case Login_model::SUCCESS:
 						$this->session->set_userdata("username", $username);
-						echo $this->bs->getJsonString(1, "success", $this->bs->site_url . "/" . $this->bs->site_name . "/home" . $usertype);
+						$this->session->set_userdata("usertype", $usertype);
+						$site_index = "";
+						switch ($usertype)
+						{
+							case Bs::USER_ADMIN   : $site_index = "a_index"; break;
+							case Bs::USER_STUDENT : $site_index = "s_index"; break;
+							case BS::USER_TEACHER : $site_index = "t_index"; break;
+						}
+						echo $this->bs->getJsonString(1, "success", $this->bs->site_url . "/" . $this->bs->site_name . "/home/" . $site_index);
 						break;
 					case Login_model::USER_NOT_EXIST:
 						echo $this->bs->getJsonString(0, "用户不存在!");
