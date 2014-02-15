@@ -6,9 +6,29 @@ class MY_Controller extends CI_Controller
 	{
 		parent::__construct();
 
-		if($this->hr->checkUserLogin() == FALSE) 
+		if($this->bs->checkUserLogin() == FALSE) 
 		{
-			redirect($this->hr->getSiteUrl("login/showLogin"));
+			redirect($this->bs->getSiteUrl("login/showLogin"));
+		} else {
+			$pos = strpos($_SERVER['PHP_SELF'], $this->bs->site_name);
+			$url_sig = substr($_SERVER['PHP_SELF'], $pos + strlen($this->bs->site_name) + 1);
+			$url_sig_array = explode("/", $url_sig);
+			if(count($url_sig_array) >= 2)
+			{
+				$method = $url_sig_array[1];
+				$usertype = $this->session->userdata("usertype");
+				if(	!(	(strpos($method, "a_") === 0 && $usertype == Bs::USER_ADMIN) ||
+						(strpos($method, "s_") === 0 && $usertype == Bs::USER_STUDENT) ||
+						(strpos($method, "t_") === 0 && $usertype == Bs::USER_TEACHER) ||
+						!preg_match("/^[ast]_/", $method)
+						)
+					)
+				{
+					die("you does't have the authority!");
+				}
+				
+				
+			}
 		}
 	}
 }
