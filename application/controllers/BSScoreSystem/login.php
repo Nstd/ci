@@ -41,10 +41,14 @@
 				switch($verify_state)
 				{
 					case Login_model::SUCCESS:
-						$user_info = $this->logindb->getUserInfo();
+						$user_info = $this->logindb->getUserInfo($username);
 						$this->session->set_userdata("username", $user_info['username']);
 						$this->session->set_userdata("usertype", $user_info['type']);
 						$this->session->set_userdata("name",     $user_info['name']);
+						if(isset($user_info['is_major_head']))
+						{
+							$this->session->set_userdata("is_major_head", $user_info['is_major_head']);
+						}
 						$site_index = "";
 						switch ($user_info['type'])
 						{

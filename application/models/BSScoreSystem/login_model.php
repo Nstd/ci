@@ -46,9 +46,18 @@ class Login_model extends CI_Model
 		}
 	}
 
-	function getUserInfo()
+	function getUserInfo($username)
 	{
-		return $this->user_info;
+		//return $this->user_info;
+		$query = $this->db->query("select * from t_user_info us left join t_teacher_info tc on us.username=tc.staff_id left join t_student_info st on us.username=st.stu_id where username='$username'");
+		if($query->num_rows() == 1)
+		{
+			return $query->result('array')[0];
+		}
+		else
+		{
+			return NULL;
+		}
 	}
 }
 

@@ -15,7 +15,13 @@
     <ul class="nav navbar-nav">
       <li><a href="#">评分</a></li>
       <li><a href="#">查看评分</a></li>
-      <li><a href="#">设置评分项</a></li>
+      <?php 
+        if ( $this->session->userdata("is_major_head") !== FALSE && 
+             $this->session->userdata("is_major_head") == Bs::MAJOR_HEAD)
+        {
+          echo '<li><a href="#">设置评分项</a></li>';
+        }
+      ?>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><p class="navbar-text">欢迎:<?php echo $this->session->userdata("name");?></p></li>
