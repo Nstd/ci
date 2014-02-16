@@ -7,6 +7,9 @@ class Login_model extends CI_Model
 	const USER_NOT_EXIST   = 1;
 	const PASSWORD_NOT_FIT = 2;
 
+	/** 用户信息 **/
+	public $user_info      = NULL;
+
 	function __construct()
 	{
 		parent::__construct();
@@ -18,8 +21,9 @@ class Login_model extends CI_Model
 	 * @param  string $password [密码]
 	 * @return [int]            [验证结果]
 	 */
-	function verify_user($username="", $password="", &$type = "")
+	function verify_user($username="", $password="")
 	{
+		$this->user_info = NULL;
 		$this->load->database();
 		$query = $this->db->query("select * from t_user_info where username='$username'");
 
@@ -28,7 +32,7 @@ class Login_model extends CI_Model
 			$row = $query->row_array();
 			if($row['password'] == $password)
 			{
-				$type = $row['type'];
+				$this->user_info = $row;
 				return Login_model::SUCCESS;
 			}
 			else
@@ -40,7 +44,11 @@ class Login_model extends CI_Model
 		{
 			return Login_model::USER_NOT_EXIST;
 		}
+	}
 
+	function getUserInfo()
+	{
+		return $this->user_info;
 	}
 }
 

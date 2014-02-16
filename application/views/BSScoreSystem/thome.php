@@ -6,6 +6,6 @@
 		<?php echo $cssjscontent; ?>
 	</head>
 	<body>
-		<?php $this->load->view($this->bs->getSiteUrl("head-teacher"), null); ?>
+		<?php echo $theader; ?>
 	</body>
 </html>

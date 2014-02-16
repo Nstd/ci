@@ -9,12 +9,13 @@
 
 		function t_index()
 		{
+			$this->bs->data['theader'] = $this->load->view($this->bs->getSiteUrl("head-teacher"), $this->bs->data, true);
 			$this->load->view($this->bs->getSiteUrl("thome"), $this->bs->data);
 		}
 
 		function a_index()
 		{
-			
+
 		}
 	}
 
