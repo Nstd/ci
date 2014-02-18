@@ -13,11 +13,44 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li><a href="#">评分</a></li>
-      <li><a href="#">查看评分</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">评分<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <?php
+            if(count($students))
+            {
+              foreach($students as $row)
+              {
+                echo "<li><a href=''>" . $row['name'] . "</a></li>";
+              }
+            }
+            else
+            {
+              echo "<li><a href='#'>没有学生</a></li>";
+            }
+          ?>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">查看评分<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <?php
+            if(count($students))
+            {
+              foreach($students as $row)
+              {
+                echo "<li><a href=''>" . $row['name'] . "</a></li>";
+              }
+            }
+            else
+            {
+              echo "<li><a href='#'>没有学生</a></li>";
+            }
+          ?>
+        </ul>
+      </li>
       <?php 
-        if ( $this->session->userdata("is_major_head") !== FALSE && 
-             $this->session->userdata("is_major_head") == Bs::MAJOR_HEAD)
+        if($this->session->userdata("is_major_head")  == Bs::MAJOR_HEAD)
         {
           echo '<li><a href="#">设置评分项</a></li>';
         }

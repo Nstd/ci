@@ -24,7 +24,7 @@ class Login_model extends CI_Model
 	function verify_user($username="", $password="")
 	{
 		$this->user_info = NULL;
-		$this->load->database();
+		//$this->load->database();
 		$query = $this->db->query("select * from t_user_info where username='$username'");
 
 		if($query->num_rows() == 1)
