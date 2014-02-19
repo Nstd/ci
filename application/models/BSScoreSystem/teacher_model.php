@@ -29,4 +29,22 @@ class Teacher_model extends MY_Model
 			return array();
 		}
 	}
+
+	function getScoreTable($teacher_id)
+	{
+		$query = $this->db->query(
+			"select * " .
+			"from t_teacher_info t_tc inner join t_score_item_info t_si on t_tc.major_id=t_si.major_id " .
+			"where staff_id='" . $teacher_id . "'"
+			);
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result('array');
+		}
+		else
+		{
+			return array();
+		}
+	}
 }
