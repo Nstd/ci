@@ -17,11 +17,11 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">评分<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <?php
-            if(count($students))
+            if(isset($students) && count($students))
             {
               foreach($students as $row)
               {
-                echo "<li><a href=''>" . $row['name'] . "</a></li>";
+                echo "<li><a href='$site_url/$site_name/teacher/t_score_table'>" . $row['name'] . "</a></li>";
               }
             }
             else
@@ -35,7 +35,7 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">查看评分<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <?php
-            if(count($students))
+            if(isset($students) && count($students))
             {
               foreach($students as $row)
               {
