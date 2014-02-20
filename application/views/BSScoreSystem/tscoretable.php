@@ -7,8 +7,15 @@
 	</head>
 	<body>
 		<?php echo $theader; ?>
-		<div class='container'>
-			<?php echo $scoretable_data; ?>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<?php echo $student_info; ?>
+				</div>
+				<div class="col-sm-8">
+					<?php echo $scoretable_data; ?>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
