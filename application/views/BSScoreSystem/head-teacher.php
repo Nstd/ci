@@ -21,7 +21,7 @@
             {
               foreach($students as $row)
               {
-                echo "<li><a href='$site_url/$site_name/teacher/t_score_table'>" . $row['name'] . "</a></li>";
+                echo "<li><a href='$site_url/$site_name/teacher/t_score_table/" . $row['stu_id'] . "'>" . $row['name'] . "</a></li>";
               }
             }
             else

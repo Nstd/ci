@@ -47,4 +47,23 @@ class Teacher_model extends MY_Model
 			return array();
 		}
 	}
+
+
+	function getStudentInfoByStudentId($stu_id)
+	{
+		$query = $this->db->query(
+			"select * " . 
+			"from t_student_info t_st inner join t_user_info t_us on t_st.stu_id=t_us.username " . 
+			"where stu_id='" . $stu_id . "'"
+			);
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result('array')[0];
+		}
+		else
+		{
+			return array();
+		}
+	}
 }
