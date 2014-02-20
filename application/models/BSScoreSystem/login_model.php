@@ -52,7 +52,8 @@ class Login_model extends CI_Model
 		$query = $this->db->query("select * from t_user_info us left join t_teacher_info tc on us.username=tc.staff_id left join t_student_info st on us.username=st.stu_id where username='$username'");
 		if($query->num_rows() == 1)
 		{
-			return $query->result('array')[0];
+			$result=$query->result('array');
+			return $result[0];
 		}
 		else
 		{
