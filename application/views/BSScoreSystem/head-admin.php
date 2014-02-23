@@ -13,44 +13,11 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">评分<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <?php
-            if(isset($students) && count($students))
-            {
-              foreach($students as $row)
-              {
-                echo "<li><a href='$site_url/$site_name/teacher/t_score_table/" . $row['stu_id'] . "'>" . $row['name'] . "</a></li>";
-              }
-            }
-            else
-            {
-              echo "<li><a href='#'>没有学生</a></li>";
-            }
-          ?>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">查看评分<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <?php
-            if(isset($students) && count($students))
-            {
-              foreach($students as $row)
-              {
-                echo "<li><a href=''>" . $row['name'] . "</a></li>";
-              }
-            }
-            else
-            {
-              echo "<li><a href='#'>没有学生</a></li>";
-            }
-          ?>
-        </ul>
-      </li>
+      <li><a href="javascript:user_management();" >用户管理</a></li>
+      <li><a href="#">毕设管理</a></li>
       <?php 
-        if($this->session->userdata("is_major_head")  == Bs::MAJOR_HEAD)
+        if ( $this->session->userdata("is_major_head") !== FALSE && 
+             $this->session->userdata("is_major_head") == Bs::MAJOR_HEAD)
         {
           echo '<li><a href="#">设置评分项</a></li>';
         }

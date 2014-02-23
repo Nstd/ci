@@ -31,21 +31,25 @@
 			}
 			else
 			{
-				//WT修改了注释
 				$this->load->model($this->bs->getSiteUrl('login_model'), 'logindb');
 
-				//WT在dev里做了注释
 				$username = $this->input->post("username");
 				$password = $this->input->post("password");
-				$verify_state = $this->logindb->verify_user($username, $password, $usertype);
+				$verify_state = $this->logindb->verify_user($username, $password);
 
 				switch($verify_state)
 				{
 					case Login_model::SUCCESS:
-						$this->session->set_userdata("username", $username);
-						$this->session->set_userdata("usertype", $usertype);
+						$user_info = $this->logindb->getUserInfo($username);
+						$this->session->set_userdata("username", $user_info['username']);
+						$this->session->set_userdata("usertype", $user_info['type']);
+						$this->session->set_userdata("name",     $user_info['name']);
+						if(isset($user_info['is_major_head']))
+						{
+							$this->session->set_userdata("is_major_head", $user_info['is_major_head']);
+						}
 						$site_index = "";
-						switch ($usertype)
+						switch ($user_info['type'])
 						{
 							case Bs::USER_ADMIN   : $site_index = "a_index"; break;
 							case Bs::USER_STUDENT : $site_index = "s_index"; break;
@@ -68,6 +72,8 @@
 		public function logout()
 		{
 			$this->session->unset_userdata("username");
+			$this->session->unset_userdata("type");
+			$this->session->unset_userdata("name");
 			$this->load->view($this->bs->getSiteUrl("login"), $this->bs->data);
 		}
 	}
