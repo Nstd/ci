@@ -7,12 +7,39 @@
 			parent::__construct();
 		}
 
-		function t_score_table($stu_id)
+		/**
+		 * 初始化评分表
+		 * @param  [type] $stu_id [学号]
+		 * @return [type]         
+		 */
+		function t_init_score_table($stu_id)
 		{
+			$teacher_id = $this->session->userdata("username");
 			$this->load->model($this->bs->getSiteUrl('teacher_model'), 'tdb');
-			$this->bs->data['students'] = $this->tdb->getTeachedStudentsInfo($this->session->userdata("username"));
-			$this->bs->data['score_table'] = $this->tdb->getScoreTable($this->session->userdata("username"));
-			
+			$this->bs->data['students'] = $this->tdb->getTeachedStudentsInfo($teacher_id);
+			$this->bs->data['score_table'] = $this->tdb->getEmptyScoreTable($teacher_id);
+			$this->bs->data['can_score'] = TRUE;
+			$this->bs->data['is_scored'] = $this->tdb->isScored($teacher_id, $stu_id);
+			$this->bs->data['student_data'] = $this->tdb->getStudentInfoByStudentId($stu_id);
+			$this->bs->data['student_info'] = $this->load->view($this->bs->getSiteUrl("student_info"), $this->bs->data, true);
+			$this->bs->data['theader'] = $this->load->view($this->bs->getSiteUrl("head-teacher"), $this->bs->data, true);
+			$this->bs->data['scoretable_data'] = $this->load->view($this->bs->getToolsUrl("scoretable_data"), $this->bs->data, true);
+			$this->load->view($this->bs->getSiteUrl("tscoretable"), $this->bs->data);
+		}
+
+		/**
+		 * 获取打分结果
+		 * @param  [type] $stu_id [学号]
+		 * @return [type]         
+		 */
+		function t_get_score_table_and_value($stu_id)
+		{
+			$teacher_id = $this->session->userdata("username");
+			$this->load->model($this->bs->getSiteUrl('teacher_model'), 'tdb');
+			$this->bs->data['students'] = $this->tdb->getTeachedStudentsInfo($teacher_id);
+			$this->bs->data['score_table'] = $this->tdb->getScoreTableAndValueByStudent($teacher_id, $stu_id);
+			$this->bs->data['can_score'] = FALSE;
+			$this->bs->data['is_scored'] = $this->tdb->isScored($teacher_id, $stu_id);
 			$this->bs->data['student_data'] = $this->tdb->getStudentInfoByStudentId($stu_id);
 			$this->bs->data['student_info'] = $this->load->view($this->bs->getSiteUrl("student_info"), $this->bs->data, true);
 			$this->bs->data['theader'] = $this->load->view($this->bs->getSiteUrl("head-teacher"), $this->bs->data, true);

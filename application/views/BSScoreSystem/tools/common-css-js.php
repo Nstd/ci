@@ -15,8 +15,6 @@
 <script type="text/javascript" src="<?php echo $base_url; ?>resources/js/sco.tooltip.js"></script>
 <script type="text/javascript" src="<?php echo $base_url; ?>resources/js/icheck.min.js"></script>
 <script type="text/javascript" src="<?php echo $base_url; ?>resources/js/bootstrap-switch.min.js"></script>
-<script type="text/javascript" src="<?php echo $base_url; ?>resources/js/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="<?php echo $base_url; ?>resources/js/ckeditor/adapters/jquery.js"></script>
 
 <!-- 系统实用工具 -->
 <script type="text/javascript" src="<?php echo $base_url; ?>resources/js/common.js"></script>

@@ -21,7 +21,7 @@
             {
               foreach($students as $row)
               {
-                echo "<li><a href='$site_url/$site_name/teacher/t_score_table/" . $row['stu_id'] . "'>" . $row['name'] . "</a></li>";
+                echo "<li><a href='$site_url/$site_name/teacher/t_init_score_table/" . $row['stu_id'] . "'>" . $row['name'] . "</a></li>";
               }
             }
             else
@@ -39,7 +39,7 @@
             {
               foreach($students as $row)
               {
-                echo "<li><a href=''>" . $row['name'] . "</a></li>";
+                echo "<li><a href='$site_url/$site_name/teacher/t_get_score_table_and_value/" . $row['stu_id'] . "'>" . $row['name'] . "</a></li>";
               }
             }
             else
