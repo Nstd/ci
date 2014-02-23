@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.14)
-# Date: 2014-02-24 00:34:44
+# Date: 2014-02-24 00:41:39
 # Generator: MySQL-Front 5.3  (Build 4.89)
 
 /*!40101 SET NAMES utf8 */;
@@ -32,7 +32,7 @@ INSERT INTO `t_score_value_info` (`id`,`stu_id`,`staff_id`,`item_id`,`value`) VA
 # Data for table "t_student_info"
 #
 
-INSERT INTO `t_student_info` (`stu_id`,`major_id`,`department_id`,`subject`,`score`,`teacher_id`,`respondent_teacher_id`) VALUES ('1000',1,1,'这是毕设课题',NULL,'teacher','teacher1'),('1001',1,1,'这是毕设课题2这个课题十分的长，长的有点受不了了',NULL,'teacher1','teacher');
+INSERT INTO `t_student_info` (`stu_id`,`major_id`,`department_id`,`subject`,`score`,`teacher_id`,`respondent_teacher_id`) VALUES ('1000',1,1,'这是毕设课题',NULL,'2000','2002'),('1001',1,1,'这是毕设课题2这个课题十分的长，长的有点受不了了',NULL,'2002','2000');
 
 #
 # Data for table "t_teacher_info"
