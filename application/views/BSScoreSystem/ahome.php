@@ -11,7 +11,7 @@
 			<!-- Default panel contents -->
 			<div class="panel-heading">用户管理</div>
 			<div class="panel-body">
-			<p>管理员可对所有用户进行权限管理</p>
+				<p>管理员可对所有用户进行权限管理</p>
 			</div
 			<!-- Table -->
 			<table class="table">
@@ -21,10 +21,70 @@
 						<th>用户账号</th>
 						<th>用户名</th>
 						<th>用户类型</th>
+						<th>是否可以登陆</th>
 						<th>操作</th>
 					</tr>
 				</thead>
-			</table>
-		</div>
-	</body>
+			<tbody id="tablebody"></tbody>
+		</table>
+	</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">权限管理</h4>
+			</div> 
+			<div class="modal-body" id="myModal">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="inputUsername" class="col-sm-2 control-label">用户账号</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="inputUsername"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputName" class="col-sm-2 control-label">用户名</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="inputName" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label  class="col-sm-2 control-label">用户类型</label>
+						<div class="col-sm-6">
+							<select class="form-control" id="usertype">
+								<option value="管理员">管理员</option>
+								<option value="老师">老师</option>
+								<option value="学生">学生</option>
+							</select>
+						</div>
+					</div>
+						<div class="form-group">
+						<label class="col-sm-2 control-label">登陆权限</label>
+						<div class="col-sm-6">
+							<div class="radio-inline">
+								<label>
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+									无
+								</label>
+							</div>
+							<div class="radio-inline">
+								<label>
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									有
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">保存</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
 </html>
