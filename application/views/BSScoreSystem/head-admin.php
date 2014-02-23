@@ -31,3 +31,34 @@
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
+<script type="text/javascript">
+$(document).ready(function(){
+  user_management();
+});
+
+function user_management()
+{
+  $.ajax({
+            url: '<?php echo "$site_url/$site_name" ?>/user/a_user_list',
+            type: "POST",
+            global: false,
+            success: function(data) {
+              $('.table tbody').html(data); 
+            }
+          });
+}
+
+function get_userinfo(rownum)
+{
+  var tr = $("#tablebody").find("tr:eq("+(rownum-1)+")");
+  var username=$(tr).find("td:eq(1)").html();
+  var name=$(tr).find("td:eq(2)").html();
+  var usertype=$(tr).find("td:eq(3)").html();
+  var canlogin=$(tr).find("td:eq(4)").html();
+  $("#inputUsername").val(username);
+  $("#inputName").val(name);
+  $("#usertype option[value='" + usertype + "'").attr("selected", true);
+  //$("input[@type=radio]").attr("checked",'option2');
+  $('#myModal').modal('show')
+}
+</script>

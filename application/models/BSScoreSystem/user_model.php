@@ -10,7 +10,7 @@ class User_model extends CI_Model
 	function getAllUserInfo()
 	{
 		//return $this->user_info;
-		$query = $this->db->query("select * from t_user_info");
+		$query = $this->db->query("select @rownum:=@rownum+1 AS rownum,t_user_info.* from (SELECT @rownum:=0) r,t_user_info");
 		if($query->num_rows() >= 1)
 		{
 			$result=$query->result('array');
@@ -18,7 +18,7 @@ class User_model extends CI_Model
 		}
 		else
 		{
-			return NULL;
+			return array();
 		}
 	}
 }
