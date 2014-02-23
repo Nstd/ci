@@ -14,7 +14,8 @@
 
 		function a_index()
 		{
-			
+			$this->bs->data['aheader'] = $this->load->view($this->bs->getSiteUrl("head-admin"), $this->bs->data, true);
+			$this->load->view($this->bs->getSiteUrl("ahome"), $this->bs->data);
 		}
 	}
 

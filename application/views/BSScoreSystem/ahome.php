@@ -4,5 +4,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
 	</head>
 	<body>
+		<?php echo $aheader; ?>
 	</body>
 	</html>
