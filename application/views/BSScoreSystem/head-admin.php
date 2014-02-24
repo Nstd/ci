@@ -31,3 +31,15 @@
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
+<script type="text/javascript">
+function user_management()
+{
+  $.ajax({
+    type : 'get',
+    url  : '<?php echo "$site_url/$site_name" ?>/user/a_user_list',
+    dataType : 'jsonp',
+    jsonp:'callback', 
+    success : function(data) {  alert(data); }
+  });
+}
+</script>
