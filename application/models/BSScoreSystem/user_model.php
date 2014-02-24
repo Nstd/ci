@@ -21,6 +21,26 @@ class User_model extends CI_Model
 			return array();
 		}
 	}
+
+	function load_info($username)
+	{
+		$query = $this->db->query("select username,name,type,canlogin from t_user_info where username = '".$username."'");
+		if($query->num_rows() >= 1)
+		{
+			$result = $query->row_array();
+			return $result;
+		}
+		else
+		{
+			return array();
+		}
+	}
+
+	function update_userinfo($data,$username)
+	{
+		//$this->db->where('username',$username);
+		return $this->db->update('t_user_info',$data,array('username' => $username)); 
+	}
 }
 
 ?>

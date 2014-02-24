@@ -54,9 +54,9 @@
 						<label  class="col-sm-2 control-label">用户类型</label>
 						<div class="col-sm-6">
 							<select class="form-control" id="usertype">
-								<option value="管理员">管理员</option>
-								<option value="老师">老师</option>
-								<option value="学生">学生</option>
+								<option value="0">管理员</option>
+								<option value="2">老师</option>
+								<option value="1">学生</option>
 							</select>
 						</div>
 					</div>
@@ -65,13 +65,13 @@
 						<div class="col-sm-6">
 							<div class="radio-inline">
 								<label>
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="0" checked>
 									无
 								</label>
 							</div>
 							<div class="radio-inline">
 								<label>
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="1">
 									有
 								</label>
 							</div>
@@ -81,10 +81,19 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button type="button" class="btn btn-primary">保存</button>
+				<button type="button" class="btn btn-primary" id="info-submit">保存</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<ul class="pagination" >
+  <li class="active"><a href="#">&laquo;</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>
 </body>
 </html>

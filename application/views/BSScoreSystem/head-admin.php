@@ -34,6 +34,26 @@
 <script type="text/javascript">
 $(document).ready(function(){
   user_management();
+
+  $("#info-submit").click(function(){
+    var user_info = {"username": $("#inputUsername").val(), "usertype": $("#usertype").val(),"canlogin":$('input:radio[name="optionsRadios"]:checked').val()};
+    $.ajax({
+      url: '<?php echo "$site_url/$site_name" ?>/user/a_update_user',
+      data: user_info,
+      type: "POST",
+      dataType: 'json',
+      global: false,
+      success: function(data) 
+      { 
+        if(!data)
+        {
+          alert("修改失败");
+        }
+        $('#myModal').modal('hide');
+        user_management();
+      }
+    });
+  });
 });
 
 function user_management()
@@ -48,17 +68,21 @@ function user_management()
           });
 }
 
-function get_userinfo(rownum)
-{
-  var tr = $("#tablebody").find("tr:eq("+(rownum-1)+")");
-  var username=$(tr).find("td:eq(1)").html();
-  var name=$(tr).find("td:eq(2)").html();
-  var usertype=$(tr).find("td:eq(3)").html();
-  var canlogin=$(tr).find("td:eq(4)").html();
-  $("#inputUsername").val(username);
-  $("#inputName").val(name);
-  $("#usertype option[value='" + usertype + "'").attr("selected", true);
-  //$("input[@type=radio]").attr("checked",'option2');
-  $('#myModal').modal('show');
+function get_userinfo(username)
+{ 
+  $.ajax({
+    url: '<?php echo "$site_url/$site_name" ?>/user/a_load_info',
+    type: "POST",
+    global: false,
+    dataType : 'json',
+    data: {'username':username},
+    success: function(data) {
+      $("#inputUsername").val(data.username);
+      $("#inputName").val(data.name);
+      $("#usertype").val(data.type);
+      $("input[name=optionsRadios]:eq(" + data.canlogin + ")").attr("checked",'checked'); 
+      $('#myModal').modal('show');
+    }
+  });
 }
 </script>

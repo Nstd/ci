@@ -26,10 +26,29 @@
 						<td>'.$val['name'].'</td>
 						<td>'.$val['type'].'</td>
 						<td>'.($val['canlogin']?"可以登陆":"不可以登陆").'</td>
-						<td><button type="button" class="btn btn-default" onclick="get_userinfo('."'".$val['rownum']."'".')">修改</button></td>
+						<td><button type="button" class="btn btn-default" onclick="get_userinfo('."'".$val['username']."'".')">修改</button></td>
 					</tr>';
 			}
 			echo $str;
+		}
+
+		function a_load_info()
+		{  
+			$username = $this->input->post('username');
+			$this->load->model($this->bs->getSiteUrl('user_model'), 'userdb');
+			$result = $this->userdb->load_info($username);
+			$data=json_encode($result);
+			echo $data;
+		}
+
+		function a_update_user()
+		{
+			$username= $this->input->post('username');
+			$data['type'] = $this->input->post('usertype');
+			$data['canlogin'] = $this->input->post('canlogin');
+			$this->load->model($this->bs->getSiteUrl('user_model'), 'userdb');
+			$result = $this->userdb->update_userinfo($data,$username);
+			echo json_encode($result);
 		}
 	}
 ?>
