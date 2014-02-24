@@ -59,6 +59,6 @@ function get_userinfo(rownum)
   $("#inputName").val(name);
   $("#usertype option[value='" + usertype + "'").attr("selected", true);
   //$("input[@type=radio]").attr("checked",'option2');
-  $('#myModal').modal('show')
+  $('#myModal').modal('show');
 }
 </script>
