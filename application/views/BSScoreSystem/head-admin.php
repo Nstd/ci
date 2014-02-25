@@ -56,14 +56,17 @@ $(document).ready(function(){
   });
 });
 
-function user_management()
+function user_management(page)
 {
   $.ajax({
             url: '<?php echo "$site_url/$site_name" ?>/user/a_user_list',
             type: "POST",
+            dataType: 'json',
+            data: {'page':page},
             global: false,
             success: function(data) {
-              $('.table tbody').html(data); 
+              $('.table tbody').html(data.info); 
+              $('.pagination').html(data.paging);
             }
           });
 }

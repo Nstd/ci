@@ -7,10 +7,12 @@ class User_model extends CI_Model
 		parent::__construct();
 	}
 
-	function getAllUserInfo()
+	protected $tablename = 't_user_info';
+
+	function getAllUserInfo($start=0,$pagesize=8)
 	{
-		//return $this->user_info;
-		$query = $this->db->query("select @rownum:=@rownum+1 AS rownum,t_user_info.* from (SELECT @rownum:=0) r,t_user_info");
+		$sql="select @rownum:=@rownum+1 AS rownum,t_user_info.* from (SELECT @rownum:=0) r,t_user_info order by type limit ".$start.",".$pagesize;
+		$query = $this->db->query($sql);
 		if($query->num_rows() >= 1)
 		{
 			$result=$query->result('array');
@@ -20,6 +22,12 @@ class User_model extends CI_Model
 		{
 			return array();
 		}
+	}
+
+	function countNum()
+	{
+		$query = $this->db->query('SELECT * FROM '.$this->tablename);
+		return $query->num_rows();
 	}
 
 	function load_info($username)

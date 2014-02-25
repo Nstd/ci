@@ -9,9 +9,21 @@
 
 		function a_user_list()
 		{
+			$page = $this->input->post('page')?$this->input->post('page'):1;
+			$pagesize=5;
+			$start=($page-1)*$pagesize;
+
 			$this->load->model($this->bs->getSiteUrl('user_model'), 'userdb');
-			$result = $this->userdb->getAllUserInfo();
-			$str='';
+			$total_page = ceil($this->userdb->countNum() / $pagesize);
+			$paging='<li><a href="#">&laquo;</a></li>';
+			for ($i=1; $i <= $total_page; $i++)
+			{ 
+				$paging.='<li '.($page==$i? "class=\"active\"": "").'><a href="javascript:user_management('.$i.');">'.$i.'</a></li>';
+			}
+			$paging.='<li><a href="#">&raquo;</a></li>';
+
+			$result = $this->userdb->getAllUserInfo($start,$pagesize);
+			$info='';
 			foreach ($result as $key => $val) 
 			{
 				switch ($val['type'])
@@ -20,7 +32,7 @@
 							case Bs::USER_STUDENT : $val['type'] = "学生"; break;
 							case BS::USER_TEACHER : $val['type'] = "老师"; break;
 						}
-				$str.='<tr>
+				$info.='<tr>
 						<td>'.$val['rownum'].'</td>
 						<td>'.$val['username'].'</td>
 						<td>'.$val['name'].'</td>
@@ -29,7 +41,8 @@
 						<td><button type="button" class="btn btn-default" onclick="get_userinfo('."'".$val['username']."'".')">修改</button></td>
 					</tr>';
 			}
-			echo $str;
+			$data=array('info'=>$info,'paging'=>$paging);
+			echo json_encode($data);
 		}
 
 		function a_load_info()
