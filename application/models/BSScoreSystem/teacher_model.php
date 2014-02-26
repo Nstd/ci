@@ -102,4 +102,24 @@ class Teacher_model extends MY_Model
 			return array();
 		}
 	}
+
+	function scoreStudent($teacher_id, $stu_id, $score)
+	{
+		$data = array();
+
+		foreach($score as $key => $value)
+		{
+			$row = array(
+				"staff_id" => $teacher_id,
+				"stu_id"   => $stu_id,
+				"item_id"  => $key,
+				"value"    => $value
+				);
+			array_push($data, $row);
+		}
+
+		$query = $this->db->insert_batch("t_score_value_info", $data);
+		var_dump($query);
+
+	}
 }

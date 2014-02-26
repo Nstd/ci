@@ -16,6 +16,7 @@
 		{
 			$teacher_id = $this->session->userdata("username");
 			$this->load->model($this->bs->getSiteUrl('teacher_model'), 'tdb');
+			$this->bs->data['student_id'] = $stu_id;
 			$this->bs->data['students'] = $this->tdb->getTeachedStudentsInfo($teacher_id);
 			$this->bs->data['score_table'] = $this->tdb->getEmptyScoreTable($teacher_id);
 			$this->bs->data['can_score'] = TRUE;
@@ -45,6 +46,16 @@
 			$this->bs->data['theader'] = $this->load->view($this->bs->getSiteUrl("head-teacher"), $this->bs->data, true);
 			$this->bs->data['scoretable_data'] = $this->load->view($this->bs->getToolsUrl("scoretable_data"), $this->bs->data, true);
 			$this->load->view($this->bs->getSiteUrl("tscoretable"), $this->bs->data);
+		}
+
+
+		function t_score($stu_id)
+		{
+			//print_r($this->input->post("score"));
+			$score = $this->input->post("score");
+			$teacher_id = $this->session->userdata("username");
+			$this->load->model($this->bs->getSiteUrl('teacher_model'), 'tdb');
+			$this->tdb->scoreStudent($teacher_id, $stu_id, $score);
 		}
 	}
 
