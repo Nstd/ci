@@ -1,6 +1,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">评分表</div>
 	<!-- <div class="panel-body"> -->
+		<form action='<?php echo "$site_url/$site_name/teacher/t_score/$student_id"; ?>' method="post">
 		<table class='table table-bordered table-hover'>
 			<thead>
 				<th style="text-align: center;">一级指标</th>
@@ -36,7 +37,7 @@
 						if($num == 0)
 						{
 							$level   = getRadioTdString(
-								"score_" . $level_one['item_id'], 
+								"score[" . $level_one['item_id'] . "]", 
 								isset($level_one['value']) ? $level_one['value'] : null
 								);
 							echo "<tr><td colspan='2'>" . $level_one['item_content'] . "</td>$level</tr>";
@@ -44,15 +45,18 @@
 						else if($num == 1)
 						{
 							$level = getRadioTdString(
-								"score_" . $item_rows[0]['item_id'], 
+								"score[" . $item_rows[0]['item_id'] . "]", 
 								isset($item_rows[0]['value']) ? $item_rows[0]['value'] : null
 								);
-							echo "<tr><td>" . $level_one['item_content'] . "</td><td>" . $item_rows[0]['item_content'] . "</td>$level</tr>";
+							echo "<tr><td>" . $level_one['item_content'] . 
+									"<input type='hidden' name='score[" . $level_one['item_id'] . "]' value='0'>" .
+									"</td><td>" . $item_rows[0]['item_content'] . "</td>$level</tr>";
 						}
 						else 
 						{
 							echo "<tr><td valign='center' rowspan='" . ($num) . "'>" . $level_one['item_content'] . 
-								"</td><td>" . $item_rows[0]['item_content'] . "</td>" . getRadioTdString("score_" . $item_rows[0]['item_id'], isset($item_rows[0]['value']) ? $item_rows[0]['value'] : null) . "</tr>";
+									"<input type='hidden' name='score[" . $level_one['item_id'] . "]' value='0'>" .
+									"</td><td>" . $item_rows[0]['item_content'] . "</td>" . getRadioTdString("score[" . $item_rows[0]['item_id'] . "]", isset($item_rows[0]['value']) ? $item_rows[0]['value'] : null) . "</tr>";
 						//	echo "<tr><td rowspan='" . ($num+1) . "'>" . $level_one['item_content'] . 
 						//		"</td><td height='0px'></td><td height='0px'></td></tr>";
 						//	echo "<tr><td rowspan='" . ($num+1) . "'>" . $level_one['item_content'] . "</td></tr>";
@@ -60,7 +64,7 @@
 							for($i=1; $i<$num; $i++)
 							{
 								$level = getRadioTdString(
-									"score_" . $item_rows[$i]['item_id'], 
+									"score[" . $item_rows[$i]['item_id'] . "]", 
 									isset($item_rows[$i]['value']) ? $item_rows[$i]['value'] : null
 									);
 								echo "<tr><td>" . $item_rows[$i]['item_content'] . "</td>$level</tr>";
@@ -100,6 +104,13 @@
 		?>
 
 		</table>
+		<?php 
+			if(isset($can_score) && $can_score === TRUE && $is_scored == FALSE)
+			{
+				echo "<div class='panel-footer' style='height:41px'><div class='pull-right' style='margin-top:-7px;'><input type='submit' class='btn btn-default' value='保存' style='width:80px'></div></div>";
+			}
+		?>
+		</form>
 		<style type="text/css">
 		table tr:hover td[rowspan]{
 			background-color: #fff;
@@ -115,10 +126,4 @@
 			});
 		</script>
 	<!-- </div> -->
-	<?php 
-		if(isset($can_score) && $can_score === TRUE && $is_scored == FALSE)
-		{
-			echo "<div class='panel-footer' style='height:41px'><div class='pull-right' style='margin-top:-7px;'><button type='button' class='btn btn-default'>&nbsp;&nbsp;保存&nbsp;&nbsp;</button></div></div>";
-		}
-	?>
 </div>
