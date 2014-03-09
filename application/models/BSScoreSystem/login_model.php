@@ -49,7 +49,20 @@ class Login_model extends CI_Model
 	function getUserInfo($username)
 	{
 		//return $this->user_info;
-		$query = $this->db->query("select * from t_user_info us left join t_teacher_info tc on us.username=tc.staff_id left join t_student_info st on us.username=st.stu_id where username='$username'");
+		//$query = $this->db->query("select * from t_user_info us left join t_teacher_info tc on us.username=tc.staff_id left join t_student_info st on us.username=st.stu_id where username='$username'");
+		$query = $this->db->query(<<<SQL
+				select 
+					*, 
+					case when tmajor_id is NULL then -1 else tmajor_id end major_id, 
+					case when xattr is NULL then -1 else xattr end attr 
+				from t_user_info us left join (
+					select staff_id as xusername, major_id as tmajor_id, is_major_head as xattr from  t_teacher_info where staff_id='$username' 
+					union 
+					select stu_id as xusername, major_id as tmajor_id, -1 as xattr from t_student_info where stu_id='$username' 
+				) tb on tb.xusername=us.username 
+				where us.username='$username';
+SQL
+			);
 		if($query->num_rows() == 1)
 		{
 			$result=$query->result('array');

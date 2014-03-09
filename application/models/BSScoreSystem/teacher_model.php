@@ -30,12 +30,12 @@ class Teacher_model extends MY_Model
 		}
 	}
 
-	function getEmptyScoreTable($teacher_id)
+	function getEmptyScoreTable($stu_id)
 	{
 		$query = $this->db->query(
 			"select * " .
-			"from t_teacher_info t_ti inner join t_score_item_info t_si on t_ti.major_id=t_si.major_id " .
-			"where t_ti.staff_id='" . $teacher_id . "'"
+			"from t_student_info t_si inner join t_score_item_info t_sii on t_si.major_id=t_sii.major_id " .
+			"where t_si.stu_id='" . $stu_id . "'"
 			);
 
 		if($query->num_rows() > 0)
@@ -95,7 +95,8 @@ class Teacher_model extends MY_Model
 
 		if($query->num_rows() > 0)
 		{
-			return $query->result('array')[0];
+			$result = $query->result('array');
+			return $result[0];
 		}
 		else
 		{
@@ -119,7 +120,65 @@ class Teacher_model extends MY_Model
 		}
 
 		$query = $this->db->insert_batch("t_score_value_info", $data);
-		var_dump($query);
+		//var_dump($query);
 
+	}
+
+	function insertFirstLevelItemAndGetResult($major, $i_data)
+	{
+		$data = array();
+
+		foreach($i_data as $key => $value)
+		{
+			$row = array(
+				"parent_item_id" => 0,
+				"item_content"   => $i_data[$key][0],
+				"major_id"      => $major,
+				"item_level"     => 1,
+				"ratio"          => $i_data[$key][1]
+				);
+			array_push($data, $row);
+		}
+
+		//插入一级指标
+		$this->db->insert_batch("t_score_item_info", $data);
+
+		//从数据库中获取刚插入的一级指标
+		$query = $this->db->query(
+			"select * from t_score_item_info " .
+			"where major_id=" . $major . " and item_level=1"
+			);
+
+		if($query->num_rows() > 0)
+		{
+			return  $query->result('array');
+		}
+		else
+		{
+			return array();
+		}
+	}
+
+	function insertSecondLevelItem($i_data)
+	{
+		//插入二级指标
+		$this->db->insert_batch("t_score_item_info", $i_data);
+	}
+
+	function isScoreTableItemExist($major_id)
+	{
+		$query = $this->db->query(
+			"select count(1) as num from t_score_item_info where major_id=$major_id"
+			);
+		
+		if($query->num_rows() > 0)
+		{
+			$result = $query->result('array');
+			return $result[0]['num'] > 0;
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 }

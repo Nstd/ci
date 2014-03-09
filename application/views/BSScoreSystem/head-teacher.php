@@ -52,7 +52,7 @@
       <?php 
         if($this->session->userdata("is_major_head")  == Bs::MAJOR_HEAD)
         {
-          echo '<li><a href="#">设置评分项</a></li>';
+          echo "<li><a href='$site_url/$site_name/teacher/t_gen_score_table'>设置评分项</a></li>";
         }
       ?>
     </ul>

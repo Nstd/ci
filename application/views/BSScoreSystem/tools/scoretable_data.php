@@ -107,7 +107,7 @@
 		<?php 
 			if(isset($can_score) && $can_score === TRUE && $is_scored == FALSE)
 			{
-				echo "<div class='panel-footer' style='height:41px'><div class='pull-right' style='margin-top:-7px;'><input type='submit' class='btn btn-default' value='保存' style='width:80px'></div></div>";
+				echo "<div class='panel-footer' style='height:41px'><div class='pull-right' style='margin-top:-7px;margin-right:-10px'><input type='submit' class='btn btn-primary' value='保存' style='width:80px'></div></div>";
 			}
 		?>
 		</form>

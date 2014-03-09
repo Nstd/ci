@@ -41,13 +41,11 @@
 				{
 					case Login_model::SUCCESS:
 						$user_info = $this->logindb->getUserInfo($username);
-						$this->session->set_userdata("username", $user_info['username']);
-						$this->session->set_userdata("usertype", $user_info['type']);
-						$this->session->set_userdata("name",     $user_info['name']);
-						if(isset($user_info['is_major_head']))
-						{
-							$this->session->set_userdata("is_major_head", $user_info['is_major_head']);
-						}
+						$this->session->set_userdata("username", 		$user_info['username']);
+						$this->session->set_userdata("usertype", 		$user_info['type']);
+						$this->session->set_userdata("name",     		$user_info['name']);
+						$this->session->set_userdata("major_id",    	$user_info['major_id']);
+						$this->session->set_userdata("is_major_head",	$user_info['attr']);
 						$site_index = "";
 						switch ($user_info['type'])
 						{
@@ -74,6 +72,8 @@
 			$this->session->unset_userdata("username");
 			$this->session->unset_userdata("type");
 			$this->session->unset_userdata("name");
+			$this->session->unset_userdata("is_major_head");
+			$this->session->unset_userdata("major_id");
 			$this->load->view($this->bs->getSiteUrl("login"), $this->bs->data);
 		}
 	}

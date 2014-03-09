@@ -25,8 +25,10 @@ class Bs
 	const USER_STUDENT = 1;
 	/** 用户类型：教师 **/
 	const USER_TEACHER = 2;
-	/** 是否是毕设指导组组长 **/
+	/** 是毕设指导组组长 **/
 	const MAJOR_HEAD   = 1;
+	/** 不是毕设指导组组长 **/
+	const NOT_MAJOR_HEAD   = 0;
 
 	function __construct()
 	{
