@@ -13,9 +13,7 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li><a href="<?php echo $this->bs->site_url."/".$this->bs->getSiteUrl('home/a_index');?>" >用户管理</a></li>
-      <li><a href="<?php echo $this->bs->site_url."/".$this->bs->getSiteUrl('home/a_assignment');?>" >毕设管理</a></li>
-  
+      <li><a href="#" >个人毕设成绩查看</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><p class="navbar-text">欢迎:<?php echo $this->session->userdata("name");?></p></li>

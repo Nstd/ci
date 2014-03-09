@@ -20,6 +20,26 @@
 			$this->bs->data['aheader'] = $this->load->view($this->bs->getSiteUrl("head-admin"), $this->bs->data, true);
 			$this->load->view($this->bs->getSiteUrl("ahome"), $this->bs->data);
 		}
+
+		function s_index()
+		{
+			$this->bs->data['aheader'] = $this->load->view($this->bs->getSiteUrl("head-student"), $this->bs->data, true);
+			$this->load->model($this->bs->getSiteUrl('student_model'),'student');	
+			$this->bs->data['student']=$this->student->getScoreInfo( $this->session->userdata("username"));
+			$this->load->view($this->bs->getSiteUrl("shome"), $this->bs->data);
+		}
+
+		function a_assignment()
+		{
+			$this->bs->data['aheader'] = $this->load->view($this->bs->getSiteUrl("head-admin"), $this->bs->data, true);
+			$this->load->view($this->bs->getSiteUrl("assignment"), $this->bs->data);
+		}
+
+		function a_major()
+		{
+			$this->bs->data['aheader'] = $this->load->view($this->bs->getSiteUrl("head-admin"), $this->bs->data, true);
+			$this->load->view($this->bs->getSiteUrl("major"), $this->bs->data);
+		}
 	}
 
 ?>
