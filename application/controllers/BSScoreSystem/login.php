@@ -61,6 +61,9 @@
 					case Login_model::PASSWORD_NOT_FIT:
 						echo $this->bs->getJsonString(0, "密码错误!");
 						break;
+					case Login_model::CAN_LOGIN:
+						echo $this->bs->getJsonString(0, "您的账号被锁定，请联系管理员!");
+						break;
 					default:
 						echo $this->bs->getJsonString(0, "未知错误!");
 				}

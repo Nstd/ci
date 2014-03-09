@@ -6,6 +6,7 @@ class Login_model extends CI_Model
 	const SUCCESS          = 0;
 	const USER_NOT_EXIST   = 1;
 	const PASSWORD_NOT_FIT = 2;
+	const CAN_LOGIN        = -1;
 
 	/** 用户信息 **/
 	public $user_info      = NULL;
@@ -32,8 +33,15 @@ class Login_model extends CI_Model
 			$row = $query->row_array();
 			if($row['password'] == $password)
 			{
-				$this->user_info = $row;
-				return Login_model::SUCCESS;
+				if($row['canlogin'] != 1)
+				{
+					return Login_model::CAN_LOGIN;
+				}
+				else
+				{
+					$this->user_info = $row;
+					return Login_model::SUCCESS;
+				}
 			}
 			else
 			{
