@@ -46,7 +46,6 @@ class User_model extends CI_Model
 
 	function update_userinfo($data,$username)
 	{
-		//$this->db->where('username',$username);
 		return $this->db->update('t_user_info',$data,array('username' => $username)); 
 	}
 }

@@ -14,10 +14,11 @@ CREATE DATABASE IF NOT EXISTS `bs_score_db`
 
 DROP TABLE IF EXISTS `t_department_info`;
 CREATE TABLE `t_department_info` (
-  `department_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '系ID',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `department_id` int(11) NOT NULL COMMENT '系ID',
   `department_name` varchar(255) DEFAULT NULL COMMENT '系名',
   `major_id` int(11) DEFAULT NULL COMMENT '所属专业ID',
-  PRIMARY KEY (`department_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系信息';
 
 #
