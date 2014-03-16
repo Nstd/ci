@@ -31,11 +31,30 @@
 				});
 			});
 		</script>
+		<style type="text/css">
+			body{
+				background-image: url("<?php echo $base_url; ?>resources/img/banner2.jpg");
+				background-position: top center;
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="container">
+<!-- 			<div class="row">
+				<div class="span12" style="margin:0 auto;float:none;margin-top:0px">
+					<table style="width:100%;text-align:center;">
+						<tr>
+							<td>
+								<img style='z-index: 2' src='<?php echo $base_url; ?>resources/img/banner2.jpg'>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div> -->
 			<div class="row">
-				<div class="span12" style="margin:0 auto;float:none;margin-top:200px">
+				<div class="span12" style="margin:0 auto;float:none;margin-top:300px">
 					<table style="width:100%;text-align:center;">
 						<tr>
 							<td>

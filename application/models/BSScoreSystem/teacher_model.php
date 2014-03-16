@@ -52,9 +52,9 @@ class Teacher_model extends MY_Model
 	{
 		$query = $this->db->query(
 			"select * " .
-			"from t_teacher_info t_ti inner join t_score_item_info t_si on t_ti.major_id=t_si.major_id " .
-				" left join t_score_value_info t_sv on t_si.item_id=t_sv.item_id and t_sv.staff_id=t_ti.staff_id " .
-			"where t_ti.staff_id='" . $teacher_id . "' and t_sv.stu_id='" . $student_id . "'"
+			"from t_score_item_info t_si " .
+				" left join t_score_value_info t_sv on t_si.item_id=t_sv.item_id and t_sv.staff_id='$teacher_id' " .
+			"where t_sv.stu_id='" . $student_id . "'"
 			);
 
 		if($query->num_rows() > 0)
