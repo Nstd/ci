@@ -9,16 +9,16 @@
 				$("#submit").click(function(){
 					var param = {"username": $("#username").val(), "password": $("#password").val()};
 					$.ajax({
-						url: '<?php echo "$site_url/$site_name" ?>/login/login_valid',
+						url: '<?php echo "$site_url/$site_name" ?>/register/register_valid',
 						data: param,
 						type: "POST",
 						global: false,
-						success: function(data) {
-							var jsondata = eval("(" + data + ")");
-							if(jsondata.success == 1) {
-								location.href = jsondata.data;
-							} else {
-								$.scojs_message(jsondata.msg, $.scojs_message.TYPE_ERROR);
+						success: function(data)
+						{
+							if(data)
+							{
+								alert("注册成功，请等待管理员审核！");
+								window.history.back(-1);
 							}
 						}
 					});
@@ -68,8 +68,7 @@
 						</div>
 						<!-- </div> -->
 						<br/>
-						<button id="submit" class="btn btn-primary btn-block" type="button">登 陆</button>
-						<a target="_self" href="<?php echo "$site_url/$site_name" ?>/register/" class="pull-right">立即注册</a>
+						<button id="submit" class="btn btn-primary btn-block" type="button">注册</button>	
 					</form>
 				</div>
 			</div>

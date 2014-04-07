@@ -79,5 +79,34 @@
 			$this->session->unset_userdata("major_id");
 			$this->load->view($this->bs->getSiteUrl("login"), $this->bs->data);
 		}
+
+		public function change_password_index()
+		{	
+			$this->bs->data['HTTP_REFERER'] = $_SERVER['HTTP_REFERER'];
+			$this->load->view($this->bs->getSiteUrl("password"), $this->bs->data);
+		}
+
+		public function new_password()
+		{
+			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('old_password', 'old_password', 'trim|required|max_length[20]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('new_password', 'new_password', 'trim|required|max_length[20]|alpha_dash|xss_clean');
+
+			if($this->form_validation->run() == FALSE)
+			{
+				echo 0;
+			}
+			else
+			{
+				$this->load->model($this->bs->getSiteUrl('login_model'), 'logindb');
+
+				$username=$this->session->userdata("username");
+				$old_password = $this->input->post("old_password");
+				$new_password = $this->input->post("new_password");
+				$result=$this->logindb->change_password($username, $old_password,$new_password);
+				echo $result;
+			}
+		}
 	}
 ?>

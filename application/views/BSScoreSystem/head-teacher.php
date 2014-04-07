@@ -58,7 +58,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><p class="navbar-text">欢迎:<?php echo $this->session->userdata("name");?></p></li>
-      <li><a href="<?php echo $this->bs->site_url."/".$this->bs->getSiteUrl('login/logout');?>">[修改密码]</a></li>
+      <li><a href="<?php echo $this->bs->site_url."/".$this->bs->getSiteUrl('login/change_password_index');?>">[修改密码]</a></li>
       <li><a href="<?php echo $this->bs->site_url."/".$this->bs->getSiteUrl('login/logout');?>">[退出]</a></li>
       <li><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
     </ul>

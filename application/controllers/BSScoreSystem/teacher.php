@@ -171,7 +171,7 @@
 			$data = $this->_get_stu_project($stu_id);
 			if(!empty($data))
 			{
-				print_r($data);
+				//print_r($data);
 				$file_path = file_get_contents($data['project']);
 				$file_type = end(explode(".", $data['project']));
 				$file_name = $data['subject'] . "." . $file_type;

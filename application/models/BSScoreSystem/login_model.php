@@ -81,6 +81,27 @@ SQL
 			return NULL;
 		}
 	}
+
+	function change_password($username, $old_password,$new_password)
+	{
+		$sql="select * from t_user_info where username='$username' and password = '$old_password'";
+		$query = $this->db->query($sql);
+		if($query->num_rows() == 1)
+		{
+			return $this->db->update('t_user_info',array('password' => $new_password),array('username' => $username)); 
+		}
+		else
+		{
+			echo 2;
+		}
+	}
+
+	function register($username,$password)
+	{
+		$data = array('username' => $username, 'password' => $password, 'name' => $username,'type' => 1, 'canlogin' =>0);
+		$this->db->insert('t_user_info',$data); 
+		return 10;
+	}
 }
 
 ?>
