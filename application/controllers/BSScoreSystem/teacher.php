@@ -15,6 +15,8 @@
 		 */
 		function t_init_score_table($stu_id)
 		{
+			$stu_file = $this->_get_stu_project($stu_id);
+			$this->bs->data['stu_file_exist'] = !empty($stu_file['project']);
 			$teacher_id = $this->session->userdata("username");
 			$this->bs->data['student_id'] = $stu_id;
 			$this->bs->data['students'] = $this->tdb->getTeachedStudentsInfo($teacher_id);
@@ -35,6 +37,8 @@
 		 */
 		function t_get_score_table_and_value($stu_id)
 		{
+			$stu_file = $this->_get_stu_project($stu_id);
+			$this->bs->data['stu_file_exist'] = !empty($stu_file['project']);
 			$teacher_id = $this->session->userdata("username");
 			$this->bs->data['students'] = $this->tdb->getTeachedStudentsInfo($teacher_id);
 			$this->bs->data['score_table'] = $this->tdb->getScoreTableAndValueByStudent($teacher_id, $stu_id);
@@ -151,6 +155,39 @@
 			{
 				echo "error";
 			}
+		}
+
+		/**
+		 * 下载论文
+		 * @param  [type] $stu_id [学号]
+		 * @return [type]         [description]
+		 */
+		function t_download_project($stu_id)
+		{
+			//echo $stu_id;
+			$this->load->helper("download");
+			//$this->load->model($this->bs->getSiteUrl('student_model'), 'sdb');
+			//$data = $this->sdb->get_project_file($stu_id);
+			$data = $this->_get_stu_project($stu_id);
+			if(!empty($data))
+			{
+				print_r($data);
+				$file_path = file_get_contents($data['project']);
+				$file_type = end(explode(".", $data['project']));
+				$file_name = $data['subject'] . "." . $file_type;
+				force_download($file_name, $file_path);
+			}
+			else
+			{
+				echo "file_not_exist";
+			}
+		}
+
+		function _get_stu_project($stu_id)
+		{
+			$this->load->model($this->bs->getSiteUrl('student_model'), 'sdb');
+			$data = $this->sdb->get_project_file($stu_id);
+			return $data;
 		}
 
 	}

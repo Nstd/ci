@@ -20,6 +20,26 @@
 					<?php echo trim($student_data['subject']); ?>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label">下载论文</label>
+				<div class="col-sm-7">
+					 <?php
+					 	if($stu_file_exist)
+						 {
+						 	echo '<a class="btn btn-primary" 
+						href="'. $this->bs->site_url."/".$this->bs->getSiteUrl('teacher/t_download_project/'.$student_data['stu_id']) . '">
+							点击下载
+					</a>';
+
+						 }
+						 else
+						 {
+						 	echo "论文未上传";
+						 }
+
+					  ?>
+				</div>
+			</div>
 		</form>
 	</div>
 </div>

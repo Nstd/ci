@@ -50,7 +50,7 @@
 						switch ($user_info['type'])
 						{
 							case Bs::USER_ADMIN   : $site_index = "a_index"; break;
-							case Bs::USER_STUDENT : $site_index = "s_index"; break;
+							case Bs::USER_STUDENT : $site_index = "s_index/-1"; break;
 							case BS::USER_TEACHER : $site_index = "t_index"; break;
 						}
 						echo $this->bs->getJsonString(1, "success", $this->bs->site_url . "/" . $this->bs->site_name . "/home/" . $site_index);

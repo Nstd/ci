@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '52917681';
+$db['default']['password'] = 'root';
 
 $db['default']['database'] = 'bs_score_db';
 $db['default']['dbdriver'] = 'mysql';

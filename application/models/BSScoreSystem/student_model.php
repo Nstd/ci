@@ -240,5 +240,26 @@ class Student_model extends CI_Model
 			return FALSE;
 		}
 	}
+
+	function set_project_file($stu_id, $file_path)
+	{
+		return $this->db->update("t_student_info", array("project" => $file_path), array("stu_id" => $stu_id));
+	}
+
+	function get_project_file($stu_id)
+	{
+		$sql = "select subject, project from t_student_info where stu_id=" . $stu_id;
+		$query = $this->db->query($sql);
+
+		if($query->num_rows() == 1)
+		{
+			$row = $query->row_array();
+			return $row;
+		}
+		else
+		{
+			return array();
+		}
+	}
 }
 ?>
